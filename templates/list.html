@@ -1,0 +1,129 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<section class="container">
+<div class="content-wrap">
+<div class="content">
+  <div class="title">
+	<h3 style="line-height: 1.3">MZ-NetBlog主题</h3>
+  </div>
+
+
+
+  {% for new in articles.object_list %}
+      <article class="excerpt excerpt-1" style="">
+      <a class="focus" href="{% url 'project:detail' id=new.id %}" title="{{ new.title }}" target="_blank" ><img class="thumb" data-original="{{ MEDIA_URL }}{{ new.cover }}" src="{{ MEDIA_URL }}{{ new.cover }}" alt="{{ new.title }}" style="display: inline;"></a>
+            <header><a class="cat" href="#" title="{{ new.classif }}" >{{ new.classif }}<i></i></a>
+                <h2><a href="{% url 'project:detail' id=new.id %}" title="{{ new.title }}" target="_blank" >{{ new.title }}</a>
+                </h2>
+            </header>
+            <p class="meta">
+                <time class="time"><i class="glyphicon glyphicon-time"></i> {{ new.created_time|date:'Y年m月d日' }}</time>
+                <span class="views"><i class="glyphicon glyphicon-eye-open"></i> {{ new.see }}</span> <a class="comment" href="##comment" title="评论" target="_blank" ><i class="glyphicon glyphicon-comment"></i> {{ new.comment_set.count }}</a>
+            </p>
+            <p class="note">{{ new.introduce }}</p>
+        </article>
+ {% endfor %}
+
+
+
+
+  <nav class="pagination">
+{#	<ul>#}
+{#	  <li class="prev-page"></li>#}
+{#	  <li class="active"><span>1</span></li>#}
+{#	  <li><a href="?page=2">2</a></li>#}
+{#	  <li class="next-page"><a href="?page=2">下一页</a></li>#}
+{#	  <li><span>共 2 页</span></li>#}
+{#	</ul>#}
+
+      {% include "_pagination.html" %}
+
+
+  </nav>
+</div>
+</div>
+<aside class="sidebar">
+<div class="fixed">
+  <div class="widget widget_search">
+	<form class="navbar-form" action="/Search" method="post">
+	  <div class="input-group">
+		<input type="text" name="keyword" class="form-control" size="35" placeholder="请输入关键字" maxlength="15" autocomplete="off">
+		<span class="input-group-btn">
+		<button class="btn btn-default btn-search" name="search" type="submit">搜索</button>
+		</span> </div>
+	</form>
+  </div>
+  <div class="widget widget_sentence">
+	<h3>标签云</h3>
+	<div class="widget-sentence-content">
+		<ul class="plinks ptags">
+            {% for tag in tags %}
+			    <li><a href="{% url 'project:list' %}?tid={{tag.id}}" title="{{ tag.name }}" draggable="false">{{ tag.name }} <span class="badge">{{ tag.artical_set.count }}</span></a></li>
+            {% endfor %}
+		</ul>
+	</div>
+  </div>
+</div>
+<div class="widget widget_hot">
+	  <h3>最新评论文章</h3>
+	  <ul>
+		
+<li><a title="用DTcms做一个独立博客网站（响应式模板）" href="#" ><span class="thumbnail">
+<img class="thumb" data-original="images/201610181739277776.jpg" src="../static/images/201610181739277776.jpg" alt="用DTcms做一个独立博客网站（响应式模板）" style="display: block;">
+</span><span class="text">用DTcms做一个独立博客网站（响应式模板）</span><span class="muted"><i class="glyphicon glyphicon-time"></i>
+2016-11-01
+</span><span class="muted"><i class="glyphicon glyphicon-eye-open"></i>88</span></a></li>
+<li><a title="用DTcms做一个独立博客网站（响应式模板）" href="#" ><span class="thumbnail">
+<img class="thumb" data-original="images/201610181739277776.jpg" src="../static/images/201610181739277776.jpg" alt="用DTcms做一个独立博客网站（响应式模板）" style="display: block;">
+</span><span class="text">用DTcms做一个独立博客网站（响应式模板）</span><span class="muted"><i class="glyphicon glyphicon-time"></i>
+2016-11-01
+</span><span class="muted"><i class="glyphicon glyphicon-eye-open"></i>88</span></a></li>
+<li><a title="用DTcms做一个独立博客网站（响应式模板）" href="#" ><span class="thumbnail">
+<img class="thumb" data-original="images/201610181739277776.jpg" src="../static/images/201610181739277776.jpg" alt="用DTcms做一个独立博客网站（响应式模板）" style="display: block;">
+</span><span class="text">用DTcms做一个独立博客网站（响应式模板）</span><span class="muted"><i class="glyphicon glyphicon-time"></i>
+2016-11-01
+</span><span class="muted"><i class="glyphicon glyphicon-eye-open"></i>88</span></a></li>
+<li><a title="用DTcms做一个独立博客网站（响应式模板）" href="#" ><span class="thumbnail">
+<img class="thumb" data-original="images/201610181739277776.jpg" src="../static/images/201610181739277776.jpg" alt="用DTcms做一个独立博客网站（响应式模板）" style="display: block;">
+</span><span class="text">用DTcms做一个独立博客网站（响应式模板）</span><span class="muted"><i class="glyphicon glyphicon-time"></i>
+2016-11-01
+</span><span class="muted"><i class="glyphicon glyphicon-eye-open"></i>88</span></a></li>
+<li><a title="用DTcms做一个独立博客网站（响应式模板）" href="#" ><span class="thumbnail">
+<img class="thumb" data-original="images/201610181739277776.jpg" src="../static/images/201610181739277776.jpg" alt="用DTcms做一个独立博客网站（响应式模板）" style="display: block;">
+</span><span class="text">用DTcms做一个独立博客网站（响应式模板）</span><span class="muted"><i class="glyphicon glyphicon-time"></i>
+2016-11-01
+</span><span class="muted"><i class="glyphicon glyphicon-eye-open"></i>88</span></a></li>
+<li><a title="用DTcms做一个独立博客网站（响应式模板）" href="#" ><span class="thumbnail">
+<img class="thumb" data-original="images/201610181739277776.jpg" src="../static/images/201610181739277776.jpg" alt="用DTcms做一个独立博客网站（响应式模板）" style="display: block;">
+</span><span class="text">用DTcms做一个独立博客网站（响应式模板）</span><span class="muted"><i class="glyphicon glyphicon-time"></i>
+2016-11-01
+</span><span class="muted"><i class="glyphicon glyphicon-eye-open"></i>88</span></a></li>
+<li><a title="用DTcms做一个独立博客网站（响应式模板）" href="#" ><span class="thumbnail">
+<img class="thumb" data-original="images/201610181739277776.jpg" src="../static/images/201610181739277776.jpg" alt="用DTcms做一个独立博客网站（响应式模板）" style="display: block;">
+</span><span class="text">用DTcms做一个独立博客网站（响应式模板）</span><span class="muted"><i class="glyphicon glyphicon-time"></i>
+2016-11-01
+</span><span class="muted"><i class="glyphicon glyphicon-eye-open"></i>88</span></a></li>
+<li><a title="用DTcms做一个独立博客网站（响应式模板）" href="#" ><span class="thumbnail">
+<img class="thumb" data-original="images/201610181739277776.jpg" src="../static/images/201610181739277776.jpg" alt="用DTcms做一个独立博客网站（响应式模板）" style="display: block;">
+</span><span class="text">用DTcms做一个独立博客网站（响应式模板）</span><span class="muted"><i class="glyphicon glyphicon-time"></i>
+2016-11-01
+</span><span class="muted"><i class="glyphicon glyphicon-eye-open"></i>88</span></a></li>
+
+	  </ul>
+  </div>
+  <div class="widget widget_sentence">
+
+<a href="#" target="_blank" rel="nofollow" title="MZ-NetBlog主题" >
+	<img style="width: 100%" src="../static/images/ad.jpg" alt="MZ-NetBlog主题" ></a>
+
+</div>
+  <div class="widget widget_sentence">
+
+<a href="#" target="_blank" rel="nofollow" title="专业网站建设" >
+	<img style="width: 100%" src="../static/images/201610241224221511.jpg" alt="专业网站建设" ></a>
+
+</div>
+</aside>
+</section>
+{% endblock %}
